@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Registrar Diagnóstico</title>
   <link rel="stylesheet" href="styles.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <div id="messageBox" class="message" aria-live="polite" style="display:none"></div>
@@ -20,16 +20,27 @@
         </div>
       </div>
     </a>
-<nav class="nav">
-      <a href="agenda.html" class="nav-link"><i class="fas fa-calendar-alt"></i><span>Agenda</span></a>
-      <a href="paciente.html" class="nav-link"><i class="fas fa-user-plus"></i><span>Registrar Paciente</span></a>
-      <a href="historial.html" class="nav-link"><i class="fas fa-users"></i><span>Historial</span></a>
-      <a href="receta.html" class="nav-link"><i class="fas fa-prescription-bottle-alt"></i><span>Receta</span></a>
-      <a href="pago.html" class="nav-link"><i class="fas fa-dollar-sign"></i><span>Pago</span></a>
-      <a href="diagnostico.html" class="nav-link active"><i class="fas fa-file-medical"></i><span>Diagnóstico</span></a>
-      <a href="estudio.html" class="nav-link"><i class="fas fa-x-ray"></i><span>Estudio</span></a>
-      <a href="reporte.html" class="nav-link"><i class="fas fa-chart-bar"></i><span>Reporte</span></a>
-      <a href="config.html" class="nav-link"><i class="fas fa-cog"></i><span>Configuración</span></a>
+
+    <nav class="nav">
+      <a href="agenda.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Agenda</a>
+
+      <div class="dropdown">
+        <button class="nav-link active dropdown-btn">
+          <i class="fas fa-user-injured"></i> Pacientes <i class="fas fa-chevron-down" style="font-size: 0.7em; margin-left: 5px;"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="paciente.html"><i class="fas fa-user-plus"></i> Registro</a>
+          <a href="historial.html"><i class="fas fa-history"></i> Historial</a>
+          <a href="diagnostico.html" style="background-color: var(--primary-light); color: var(--primary-dark); font-weight: bold;"><i class="fas fa-stethoscope"></i> Diagnóstico</a>
+          <a href="receta.html"><i class="fas fa-prescription-bottle-alt"></i> Receta</a>
+          <a href="estudio.html"><i class="fas fa-x-ray"></i> Registro de Resultados</a>
+        </div>
+      </div>
+
+      <a href="pago.html" class="nav-link"><i class="fas fa-dollar-sign"></i> Pagos</a>
+      <a href="reporte.html" class="nav-link"><i class="fas fa-chart-line"></i> Reportes</a>
+      <a href="config.html" class="nav-link"><i class="fas fa-cog"></i> Configuración</a>
+      <a href="#" id="logoutButton" class="nav-link" style="display: none; color: var(--danger);"><i class="fas fa-sign-out-alt"></i> Salir</a>
     </nav>
   </header>
 
@@ -46,30 +57,16 @@
             <input id="diagnosisTitle" type="text" required placeholder="Ej. Esguince de tobillo grado II" />
         </label>
         <label>Descripción y Plan
-            <textarea id="diagnosisDescription" rows="8" placeholder="Paciente refiere inversión forzada de tobillo derecho... Se indica reposo, hielo, compresión y elevación (RICE). Cita de seguimiento en 7 días."></textarea>
+            <textarea id="diagnosisDescription" rows="8" placeholder="Paciente refiere inversión forzada..."></textarea>
         </label>
       </fieldset>
       <div class="form-actions">
-        <button type="submit" class="btn primary">Guardar e Imprimir Diagnóstico</button>
+        <button type="submit" class="btn primary">Guardar y Generar Receta</button>
       </div>
     </form>
   </main>
 
-  <!-- Modales Completos -->
-  <div id="quickModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="quickModalTitle">
-    <div class="modal-window">
-      <button id="closeQuickModal" class="close-btn" aria-label="Cerrar">×</button>
-      <h3 id="quickModalTitle">Agendar Cita</h3>
-      <p>Ingresa el nombre completo del paciente. Si el paciente ya existe, se usará su registro. Si no, se creará uno nuevo.</p>
-      <label class="modal-label">Nombre del paciente</label>
-      <input id="quickModalInput" type="text" placeholder="Ej. Juan Pérez" />
-      <div class="modal-actions">
-        <button id="quickModalCancel" class="btn">Cancelar</button>
-        <button id="quickModalOk" class="btn primary">Agendar</button>
-      </div>
-    </div>
-  </div>
-
+  <div id="quickModal" class="modal hidden" role="dialog" aria-modal="true"></div>
   <div id="confirmModal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="modal-window">
       <h3 id="confirmModalTitle">Confirmar Acción</h3>
@@ -80,18 +77,7 @@
       </div>
     </div>
   </div>
-
-<div id="promptModal" class="modal hidden" role="dialog" aria-modal="true">
-    <div class="modal-window">
-      <h3 id="promptModalTitle">Ingrese un Valor</h3>
-      <p id="promptModalText"></p>
-      <input id="promptModalInput" type="text" />
-      <div class="modal-actions">
-        <button id="promptModalCancel" class="btn">Cancelar</button>
-        <button id="promptModalOk" class="btn primary">Aceptar</button>
-      </div>
-    </div>
-  </div>
+  <div id="promptModal" class="modal hidden" role="dialog" aria-modal="true"></div>
   <script src="app.js"></script>
 </body>
 </html>
